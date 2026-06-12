@@ -298,12 +298,6 @@ CRUD + Integrity     →   Create, Read, Delete with referential safety
 
 ---
 
-## 📄 License
-
-MIT © [Your Name](https://github.com/your-username)
-
----
-
 <div align="center">
   <sub>Built with FastAPI · SQLAlchemy · MySQL · GitHub REST API</sub>
 </div>
