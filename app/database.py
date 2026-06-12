@@ -1,7 +1,19 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+from dotenv import load_dotenv
+import os
 
-DATABASE_URL = "mysql+mysqlconnector://root:Aryan123@localhost/github_analytics"
+load_dotenv()
+
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_HOST = os.getenv("DB_HOST")
+DB_NAME = os.getenv("DB_NAME")
+
+DATABASE_URL = (
+    f"mysql+mysqlconnector://"
+    f"{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
+)
 
 engine = create_engine(DATABASE_URL)
 
