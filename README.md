@@ -21,38 +21,24 @@ A production-style backend service that collects repository metadata and event s
 ---
 
 ## 📐 Architecture
-
+ 
+```mermaid
+flowchart TD
+    A["🐙 GitHub REST API\n──────────────────\n/repos/{owner}/{repo}\n/repos/{owner}/{repo}/events"]
+    B["⚡ FastAPI Backend\n──────────────────\nEndpoints · Request Handling · Swagger Docs"]
+    C["🔗 SQLAlchemy ORM\n──────────────────\nPython ↔ MySQL Bridge · Query Abstraction"]
+    D[("🗄️ MySQL Database\n──────────────────\nrepositories table · events table · FK constraints")]
+    E["📊 Analytics & Dashboard Endpoints\n──────────────────\nEvent counts · Top actors · Cross-repo comparisons"]
+ 
+    A --> B --> C --> D --> E
+ 
+    style A fill:#1f2937,stroke:#6366f1,stroke-width:2px,color:#e2e8f0
+    style B fill:#1f2937,stroke:#06b6d4,stroke-width:2px,color:#e2e8f0
+    style C fill:#1f2937,stroke:#f59e0b,stroke-width:2px,color:#e2e8f0
+    style D fill:#1f2937,stroke:#10b981,stroke-width:2px,color:#e2e8f0
+    style E fill:#1f2937,stroke:#f43f5e,stroke-width:2px,color:#e2e8f0
 ```
-  ┌─────────────────────────────────────────────────────────┐
-  │                    GitHub REST API                       │
-  │         /repos/{owner}/{repo}  ·  /repos/{owner}/{repo}/events  │
-  └──────────────────────┬──────────────────────────────────┘
-                         │
-                         ▼
-  ┌─────────────────────────────────────────────────────────┐
-  │                   FastAPI Backend                        │
-  │       Endpoints · Request Handling · Swagger Docs        │
-  └──────────────────────┬──────────────────────────────────┘
-                         │
-                         ▼
-  ┌─────────────────────────────────────────────────────────┐
-  │                 SQLAlchemy ORM                           │
-  │        Python ↔ MySQL Bridge · Query Abstraction         │
-  └──────────────────────┬──────────────────────────────────┘
-                         │
-                         ▼
-  ┌─────────────────────────────────────────────────────────┐
-  │                      MySQL                               │
-  │   repositories table  ·  events table  ·  FK constraints │
-  └──────────────────────┬──────────────────────────────────┘
-                         │
-                         ▼
-  ┌─────────────────────────────────────────────────────────┐
-  │            Analytics & Dashboard Endpoints               │
-  │   Event counts · Top actors · Cross-repo comparisons     │
-  └─────────────────────────────────────────────────────────┘
-```
-
+ 
 ---
 
 ## ✨ Features
